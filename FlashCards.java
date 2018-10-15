@@ -1,6 +1,25 @@
+/**
+ * ============================================================================
+ *
+ * Class FlashCards
+ *
+ * File: FlashCards.java
+ *
+ * =============================
+ *
+ * @author: Hally Zhou, under Mr. John Engle's project https://drive.google.com/file/d/1IBtIbnm2hOP4tTL7dGiV-72O1a306gZ-/view with unknown license
+ * Course: AP Computer Science - Blue 1
+ * Date: October 14, 2018
+ * Version: https://github.com/haorui2002/Flashcards/commit/master
+ * GO CUBS GO
+ * I feel like your program is too advance for now, even that is the way that we should write it,
+ * which is, reusing repeated codes.
+ */
+
 import java.util.Scanner;
 import java.util.Random;
-//to have more fun
+//to have more fun, RANDOM!
+
 public class FlashCards {
     /**
      * -------------------------------
@@ -18,6 +37,8 @@ public class FlashCards {
     private static final int FIFTH_GRADE = 5;
     private static final int SIXTH_GRADE = 6;
 
+    //here, input 1 = first_grade, 2, 3, ...
+
     //added 3 more grades
     private static final int FIRST_GRADE_QUESTIONS_CNT = 4;
     private static final int SECOND_GRADE_QUESTIONS_CNT = 7;
@@ -26,7 +47,7 @@ public class FlashCards {
     private static final int FORTH_GRADE_QUESTIONS_CNT = 13;
     private static final int FIFTH_GRADE_QUESTIONS_CNT = 16;
     private static final int SIXTH_GRADE_QUESTIONS_CNT = 20;
-
+    //set numbers of questions
     //rescale
 
     /**
@@ -38,16 +59,18 @@ public class FlashCards {
 
     public static void main(String[] args) {
         Scanner kboard = new Scanner(System.in);
+        //use public static boolean checkForYes ( String inputString ) to check boolean
         boolean playingGame = false;
 
         int score = 0;
-
+        //declare a int called score
 
         // housekeeping - clear the contents of the console before we begin
         clearScreen();
 
         // welcome method - say hello to the student, hit enter to continue
         helloStudent(kboard);
+
         clearScreen();
 
         String studentName = getStudentName(kboard);
@@ -56,7 +79,7 @@ public class FlashCards {
 
         //int studentGrade = getStudentGrade ( kboard, FIRST_GRADE, THIRD_GRADE ) ;
         int studentGrade = getStudentGrade(kboard, FIRST_GRADE, SIXTH_GRADE);
-        //1-6
+        //limit 1-6
 
         String playerInput = getStringInput(kboard, "\n\n\tDo you want to play Flash Cards? >> ");
 
@@ -90,14 +113,16 @@ public class FlashCards {
             else if (studentGrade == FORTH_GRADE) {
                 score = forthGradeFlashCards(kboard, studentName, FORTH_GRADE_QUESTIONS_CNT);
                 reportScore(studentName, score, FORTH_GRADE_QUESTIONS_CNT);
-            } else if (studentGrade == FIFTH_GRADE) {
+            }
+            else if (studentGrade == FIFTH_GRADE) {
                 score = fifthGradeFlashCards(kboard, studentName, FIFTH_GRADE_QUESTIONS_CNT);
                 reportScore(studentName, score, FIFTH_GRADE_QUESTIONS_CNT);
-            } else {
+            }
+            else {
                 score = sixthGradeFlashCards(kboard, studentName, SIXTH_GRADE_QUESTIONS_CNT);
                 reportScore(studentName, score, SIXTH_GRADE_QUESTIONS_CNT);
             }
-
+            //5 if 1 else looping to the corresponding one for grade
             /*
             else
             {
@@ -194,10 +219,11 @@ public class FlashCards {
     }
 
 
-
+    //use grade one to explain
     public static int firstGradeFlashCards(Scanner kboard, String studentName, int numberOfQuestions) {
         System.out.println("I'm here in firstGradeFlashCards.");
         int score = 0;
+        //declare int score
 
         // loop through numberOfQuestions times
         // 1. clear the screen
@@ -210,14 +236,17 @@ public class FlashCards {
         for (int i = 0; i < numberOfQuestions; i++) {
             int number1 = (int) (Math.random() * 10);
             int number2 = (int) (Math.random() * 10);
+            //generate 2 random number btw 1-10
+            //for loop < grade's corresponding number of questions
             clearScreen();
             int studentResult = printEquation(kboard, number1, number2, "+");
-
+            //use the printEquation function to make the calculation
             if (studentResult == (number1 + number2))
                 score++;
-
+            //if correct than score +1
         }
         return score;
+        //return score to print out
     }
 
     public static int secondGradeFlashCards(Scanner kboard, String studentName, int numberOfQuestions) {
@@ -369,7 +398,10 @@ public class FlashCards {
             Random r = new Random();
             int studentResult = 0;
 
+            //my special cooooooooooooooooooool design
+            //i think the students will kill me
             switch (r.nextInt(3)) {
+                //randomly generate 0-2
 
                 case 0:
                     studentResult = printEquation(kboard, number1, number2, "+");
@@ -407,6 +439,8 @@ public class FlashCards {
 
     public static void clearScreen()
     {
+        //ignore this: id rather use while true and if break, not for
+        //print 20 blank lines
         for(int i = 0; i < 20; i++)
         {
             System.out.println("");
@@ -419,6 +453,7 @@ public class FlashCards {
         String studentName = getStringInput ( kboard, "\n\n\tPlease type your name >> ");
 
         return studentName ;
+        //get name
     }
 
 
@@ -431,7 +466,7 @@ public class FlashCards {
             System.out.println ( "\n\n\tPlease enter a grade between " + limitLow + " and " + limitHigh );
             studentGrade = getNumberInput ( kboard, "\n\tWhat grade are you in? >> " );
         }
-
+        //asking for grade to direct to the correct level
         return studentGrade ;
     }
 
@@ -440,6 +475,7 @@ public class FlashCards {
     {
         return ( "Y".equals ( inputString.toUpperCase()) || "YES".equals (inputString.toUpperCase()) ) ;
     }
+    //y or yes = true otherwise false
 
 
     public static void reportScore ( String studentName, int score, int totalQuestions )
@@ -453,6 +489,8 @@ public class FlashCards {
         else if ( grade > 0.8 ) System.out.println ( "Very Good.  Grade = B") ;
         else if ( grade > 0.7 ) System.out.println ( "Keep Practicing.  Grade = C") ;
         else System.out.println ( "Don't Give Up.  You can do better.  Grade = Bad times." ) ;
+
+        //grading system, convert deci to human language
     }
 
 }
