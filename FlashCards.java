@@ -16,6 +16,7 @@
  * which is, reusing repeated codes.
  */
 
+//The Fear of {{{{{{{{{{Luci and Ramen}}}}}}}}}}
 import java.util.Scanner;
 import java.util.Random;
 //to have more fun, RANDOM!
@@ -48,7 +49,7 @@ public class FlashCards {
     private static final int FIFTH_GRADE_QUESTIONS_CNT = 16;
     private static final int SIXTH_GRADE_QUESTIONS_CNT = 20;
     //set numbers of questions
-    //rescale
+    //rescaled
 
     /**
      * -------------------------------
@@ -61,6 +62,7 @@ public class FlashCards {
         Scanner kboard = new Scanner(System.in);
         //use public static boolean checkForYes ( String inputString ) to check boolean
         boolean playingGame = false;
+        //don't play the game if the user cannot understand say yes to play
 
         int score = 0;
         //declare a int called score
@@ -72,9 +74,9 @@ public class FlashCards {
         helloStudent(kboard);
 
         clearScreen();
-
+        //20 blank lines
         String studentName = getStudentName(kboard);
-
+        //studentName = human keyboard input
         System.out.println("\n\n\tWelcome " + studentName + "!");
 
         //int studentGrade = getStudentGrade ( kboard, FIRST_GRADE, THIRD_GRADE ) ;
@@ -82,15 +84,19 @@ public class FlashCards {
         //limit 1-6
 
         String playerInput = getStringInput(kboard, "\n\n\tDo you want to play Flash Cards? >> ");
+        //ask for input of yes or no
 
         playingGame = checkForYes(playerInput);
+        //checkForYes makes java undersatand yes and y = True
 
         while (playingGame) {
             if (studentGrade == FIRST_GRADE) {
                 score = firstGradeFlashCards(kboard, studentName, FIRST_GRADE_QUESTIONS_CNT);
                 reportScore(studentName, score, FIRST_GRADE_QUESTIONS_CNT);
             }
-
+            //jump to the correct grade questions
+            //after complete the for loop in the grade, report the name, score, and numbers of questions, to count
+            //the total score
             // report the results
             // 1. print the marquee
             // 2. print the student's name and score
@@ -165,7 +171,7 @@ public class FlashCards {
             // Keep playing?
             playerInput = getStringInput(kboard, "\n\n\tKeep playing? >> ")
             ;
-
+            //ask after playing one round
             playingGame = checkForYes(playerInput);
         }
         System.out.println("\nThanks for playing!");
@@ -201,6 +207,9 @@ public class FlashCards {
         String expr = kboard.nextLine();  // consumes the \n from nextInt
         System.out.println(expr);   // prints a blank line because expr is the \n from nextInt
         return nextNumber;
+        //this is the get keyboard number input funtion
+        //I really miss Python where you can just say int = input("")
+        //scan keyboard, return number of grade
     }
 
 
@@ -216,6 +225,8 @@ public class FlashCards {
 
         String studentInput = getStringInput(kboard, "");
         System.out.print(studentInput);
+        //where it start to say hi
+
     }
 
 
@@ -246,7 +257,7 @@ public class FlashCards {
             //if correct than score +1
         }
         return score;
-        //return score to print out
+        //return score to print out in result
     }
 
     public static int secondGradeFlashCards(Scanner kboard, String studentName, int numberOfQuestions) {
@@ -434,6 +445,7 @@ public class FlashCards {
     public static int printEquation ( Scanner kboard, int num1, int num2, String operator )
     {
         return getNumberInput ( kboard, "\n\n\t" + num1 + " " + operator + " " + num2 + " = " ) ;
+        //print num1 operator num2, which is the equation and calculation of the question
     }
 
 
@@ -464,6 +476,7 @@ public class FlashCards {
         while ( studentGrade < limitLow || studentGrade > limitHigh )
         {
             System.out.println ( "\n\n\tPlease enter a grade between " + limitLow + " and " + limitHigh );
+            //when you use vars instead numbers, when you change the vars, it changes here so you don't need to ctrl-R
             studentGrade = getNumberInput ( kboard, "\n\tWhat grade are you in? >> " );
         }
         //asking for grade to direct to the correct level
@@ -472,6 +485,7 @@ public class FlashCards {
 
 
     public static boolean checkForYes ( String inputString )
+            //check if human input is True or False
     {
         return ( "Y".equals ( inputString.toUpperCase()) || "YES".equals (inputString.toUpperCase()) ) ;
     }
