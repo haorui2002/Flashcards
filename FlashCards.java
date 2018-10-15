@@ -427,9 +427,12 @@ public class FlashCards {
                         score++;
                     break;
                 case 2:
+                    number1 = (int) (Math.random() * 50);//not too big
+                    number2 = (int) (Math.random() * 20);//not too big
                     studentResult = printEquation(kboard, number1, number2, "*");
 
                     if (studentResult == (number1 * number2))
+
                         score++;
                     break;
                 default:
