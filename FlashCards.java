@@ -1,8 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 //to have more fun
-public class FlashCards
-{
+public class FlashCards {
     /**
      * -------------------------------
      * Declare Constants
@@ -11,24 +10,24 @@ public class FlashCards
 
     private static final String MARQUEE = "========================================================";
 
-    private static final int FIRST_GRADE  = 1 ;
-    private static final int SECOND_GRADE = 2 ;
-    private static final int THIRD_GRADE  = 3 ;
+    private static final int FIRST_GRADE = 1;
+    private static final int SECOND_GRADE = 2;
+    private static final int THIRD_GRADE = 3;
 
-    private static final int FORTH_GRADE  = 4 ;
-    private static final int FIFTH_GRADE = 5 ;
-    private static final int SIXTH_GRADE  = 6 ;
+    private static final int FORTH_GRADE = 4;
+    private static final int FIFTH_GRADE = 5;
+    private static final int SIXTH_GRADE = 6;
 
     //added 3 more grades
-    private static final int FIRST_GRADE_QUESTIONS_CNT  = 4 ;
-    private static final int SECOND_GRADE_QUESTIONS_CNT = 10 ;
-    private static final int THIRD_GRADE_QUESTIONS_CNT  = 10 ;
+    private static final int FIRST_GRADE_QUESTIONS_CNT = 4;
+    private static final int SECOND_GRADE_QUESTIONS_CNT = 7;
+    private static final int THIRD_GRADE_QUESTIONS_CNT = 10;
 
-    private static final int FORTH_GRADE_QUESTIONS_CNT  = 14 ;
-    private static final int FIFTH_GRADE_QUESTIONS_CNT = 20 ;
-    private static final int SIXTH_GRADE_QUESTIONS_CNT  = 20 ;
+    private static final int FORTH_GRADE_QUESTIONS_CNT = 13;
+    private static final int FIFTH_GRADE_QUESTIONS_CNT = 16;
+    private static final int SIXTH_GRADE_QUESTIONS_CNT = 20;
 
-    //too lazy to think, so just +4+10+10
+    //rescale
 
     /**
      * -------------------------------
@@ -37,39 +36,36 @@ public class FlashCards
      */
 
 
-    public static void main ( String[] args )
-    {
-        Scanner kboard = new Scanner ( System.in ) ;
-        boolean playingGame = false ;
+    public static void main(String[] args) {
+        Scanner kboard = new Scanner(System.in);
+        boolean playingGame = false;
 
-        int score = 0 ;
+        int score = 0;
 
 
         // housekeeping - clear the contents of the console before we begin
-        clearScreen () ;
+        clearScreen();
 
         // welcome method - say hello to the student, hit enter to continue
-        helloStudent ( kboard ) ;
-        clearScreen () ;
+        helloStudent(kboard);
+        clearScreen();
 
-        String studentName = getStudentName ( kboard ) ;
+        String studentName = getStudentName(kboard);
 
-        System.out.println ( "\n\n\tWelcome " + studentName + "!" ) ;
+        System.out.println("\n\n\tWelcome " + studentName + "!");
 
         //int studentGrade = getStudentGrade ( kboard, FIRST_GRADE, THIRD_GRADE ) ;
-        int studentGrade = getStudentGrade ( kboard, FIRST_GRADE, SIXTH_GRADE ) ;
+        int studentGrade = getStudentGrade(kboard, FIRST_GRADE, SIXTH_GRADE);
         //1-6
 
-        String playerInput = getStringInput ( kboard, "\n\n\tDo you want to play Flash Cards? >> ");
+        String playerInput = getStringInput(kboard, "\n\n\tDo you want to play Flash Cards? >> ");
 
-        playingGame = checkForYes ( playerInput );
+        playingGame = checkForYes(playerInput);
 
-        while ( playingGame )
-        {
-            if ( studentGrade == FIRST_GRADE )
-            {
-                score = firstGradeFlashCards ( kboard, studentName, FIRST_GRADE_QUESTIONS_CNT );
-                reportScore ( studentName, score, FIRST_GRADE_QUESTIONS_CNT );
+        while (playingGame) {
+            if (studentGrade == FIRST_GRADE) {
+                score = firstGradeFlashCards(kboard, studentName, FIRST_GRADE_QUESTIONS_CNT);
+                reportScore(studentName, score, FIRST_GRADE_QUESTIONS_CNT);
             }
 
             // report the results
@@ -79,10 +75,9 @@ public class FlashCards
             // 4. print the marquee
             // 5. print < hit enter to continue >
 
-            else if ( studentGrade == SECOND_GRADE )
-            {
-                score = secondGradeFlashCards ( kboard, studentName, SECOND_GRADE_QUESTIONS_CNT ) ;
-                reportScore ( studentName, score, SECOND_GRADE_QUESTIONS_CNT );
+            else if (studentGrade == SECOND_GRADE) {
+                score = secondGradeFlashCards(kboard, studentName, SECOND_GRADE_QUESTIONS_CNT);
+                reportScore(studentName, score, SECOND_GRADE_QUESTIONS_CNT);
             }
 
             // report the results
@@ -92,22 +87,15 @@ public class FlashCards
             // 4. print the marquee
             // 5. print < hit enter to continue >
 
-            else if ( studentGrade == FORTH_GRADE )
-            {
-                score = forthGradeFlashCards ( kboard, studentName, FORTH_GRADE_QUESTIONS_CNT ) ;
-                reportScore ( studentName, score, FORTH_GRADE_QUESTIONS_CNT );
-            }
-
-            else if ( studentGrade == FIFTH_GRADE )
-            {
-                score = fifthGradeFlashCards ( kboard, studentName, FIFTH_GRADE_QUESTIONS_CNT ) ;
-                reportScore ( studentName, score, FIFTH_GRADE_QUESTIONS_CNT );
-            }
-            
-            else
-            {
-                score = sixthGradeFlashCards ( kboard, studentName, SIXTH_GRADE_QUESTIONS_CNT ) ;
-                reportScore ( studentName, score, SIXTH_GRADE_QUESTIONS_CNT );
+            else if (studentGrade == FORTH_GRADE) {
+                score = forthGradeFlashCards(kboard, studentName, FORTH_GRADE_QUESTIONS_CNT);
+                reportScore(studentName, score, FORTH_GRADE_QUESTIONS_CNT);
+            } else if (studentGrade == FIFTH_GRADE) {
+                score = fifthGradeFlashCards(kboard, studentName, FIFTH_GRADE_QUESTIONS_CNT);
+                reportScore(studentName, score, FIFTH_GRADE_QUESTIONS_CNT);
+            } else {
+                score = sixthGradeFlashCards(kboard, studentName, SIXTH_GRADE_QUESTIONS_CNT);
+                reportScore(studentName, score, SIXTH_GRADE_QUESTIONS_CNT);
             }
 
             /*
@@ -120,9 +108,7 @@ public class FlashCards
             */
 
 
-
             // ask student if she / he wants to play Flash Cards again
-
 
 
             // if yes, then
@@ -152,16 +138,14 @@ public class FlashCards
             // if yes, loop back to play
 
             // Keep playing?
-            playerInput = getStringInput ( kboard, "\n\n\tKeep playing? >> ")
+            playerInput = getStringInput(kboard, "\n\n\tKeep playing? >> ")
             ;
 
-            playingGame = checkForYes ( playerInput ) ;
+            playingGame = checkForYes(playerInput);
         }
-        System.out.println ("\nThanks for playing!") ;
+        System.out.println("\nThanks for playing!");
         kboard.close();
     }
-
-
 
 
     /**
@@ -170,53 +154,50 @@ public class FlashCards
      * -------------------------------
      */
 
-    public static String getStringInput (Scanner kboard, String prompt)
-    {
+    public static String getStringInput(Scanner kboard, String prompt) {
         // Create a variable to capture input from the keyboard
 
         // Capture the equation in an array
 
-        System.out.print (prompt);
+        System.out.print(prompt);
 
         String expr = kboard.nextLine();
-        System.out.println ();
+        System.out.println();
 
         return expr;
     }
 
 
-    public static int getNumberInput (Scanner kboard, String prompt )
-    {
+    public static int getNumberInput(Scanner kboard, String prompt) {
         // Create a variable to capture input from the keyboard and get it
 
-        System.out.print ( prompt ) ;
-        int nextNumber = kboard.nextInt () ;
+        System.out.print(prompt);
+        int nextNumber = kboard.nextInt();
         String expr = kboard.nextLine();  // consumes the \n from nextInt
-        System.out.println (expr);   // prints a blank line because expr is the \n from nextInt
+        System.out.println(expr);   // prints a blank line because expr is the \n from nextInt
         return nextNumber;
     }
 
 
-    private static void helloStudent (Scanner kboard)
-    {
-        System.out.println (MARQUEE);
-        System.out.println ();
-        System.out.println ("\tH E L L O\n");
-        System.out.println ("\tW E L C O M E   T O   F L A S H   C A R D S");
-        System.out.println ();
-        System.out.println ("\t\t< Press Enter to continue >");
-        System.out.println ();
-        System.out.println (MARQUEE);
+    private static void helloStudent(Scanner kboard) {
+        System.out.println(MARQUEE);
+        System.out.println();
+        System.out.println("\tH E L L O\n");
+        System.out.println("\tW E L C O M E   T O   F L A S H   C A R D S");
+        System.out.println();
+        System.out.println("\t\t< Press Enter to continue >");
+        System.out.println();
+        System.out.println(MARQUEE);
 
-        String studentInput = getStringInput (kboard, "");
-        System.out.print ( studentInput );
+        String studentInput = getStringInput(kboard, "");
+        System.out.print(studentInput);
     }
 
 
-    public static int firstGradeFlashCards ( Scanner kboard, String studentName, int numberOfQuestions )
-    {
-        System.out.println ("I'm here in firstGradeFlashCards.");
-        int score = 0 ;
+
+    public static int firstGradeFlashCards(Scanner kboard, String studentName, int numberOfQuestions) {
+        System.out.println("I'm here in firstGradeFlashCards.");
+        int score = 0;
 
         // loop through numberOfQuestions times
         // 1. clear the screen
@@ -226,24 +207,22 @@ public class FlashCards
         // 4. determine if the response was correct
         // 5. if correct, increase score by one
         //
-        for ( int i = 0; i < numberOfQuestions; i++ )
-        {
-            int number1 = (int)(Math.random() * 10) ;
-            int number2 = (int)(Math.random() * 10) ;
-            clearScreen () ;
-            int studentResult = printEquation ( kboard, number1, number2, "+" ) ;
+        for (int i = 0; i < numberOfQuestions; i++) {
+            int number1 = (int) (Math.random() * 10);
+            int number2 = (int) (Math.random() * 10);
+            clearScreen();
+            int studentResult = printEquation(kboard, number1, number2, "+");
 
-            if ( studentResult == ( number1 + number2 ) )
+            if (studentResult == (number1 + number2))
                 score++;
 
         }
-        return score ;
+        return score;
     }
 
-    public static int secondGradeFlashCards ( Scanner kboard, String studentName, int numberOfQuestions )
-    {
-        System.out.println ("I'm here in secondGradeFlashCards.");
-        int score = 0 ;
+    public static int secondGradeFlashCards(Scanner kboard, String studentName, int numberOfQuestions) {
+        System.out.println("I'm here in secondGradeFlashCards.");
+        int score = 0;
 
         // loop through numberOfQuestions times
         // 1. clear the screen
@@ -253,24 +232,22 @@ public class FlashCards
         // 4. determine if the response was correct
         // 5. if correct, increase score by one
         //
-        for ( int i = 0; i < numberOfQuestions; i++ )
-        {
-            int number1 = (int)(Math.random() * 100) ;
-            int number2 = (int)(Math.random() * 100) ;
-            clearScreen () ;
-            int studentResult = printEquation ( kboard, number1, number2, "+" ) ;
+        for (int i = 0; i < numberOfQuestions; i++) {
+            int number1 = (int) (Math.random() * 100);
+            int number2 = (int) (Math.random() * 100);
+            clearScreen();
+            int studentResult = printEquation(kboard, number1, number2, "+");
 
-            if ( studentResult == ( number1 + number2 ) )
+            if (studentResult == (number1 + number2))
                 score++;
         }
 
-        return score ;
+        return score;
     }
 
-    public static int thirdGradeFlashCards ( Scanner kboard, String studentName, int numberOfQuestions )
-    {
-        System.out.println ("I'm here in thirdGradeFlashCards.");
-        int score = 0 ;
+    public static int thirdGradeFlashCards(Scanner kboard, String studentName, int numberOfQuestions) {
+        System.out.println("I'm here in thirdGradeFlashCards.");
+        int score = 0;
 
         // loop through numberOfQuestions times
         // 1. clear the screen
@@ -280,31 +257,29 @@ public class FlashCards
         // 4. determine if the response was correct
         // 5. if correct, increase score by one
         //
-        for ( int i = 0; i < numberOfQuestions; i++ )
-        {
-            int number1 = (int)(Math.random() * 100) ;
-            int number2 = (int)(Math.random() * 100) ;
-            clearScreen () ;
-            if ( number2 > number1 )
-            {
-                int temp = number2 ;
-                number2 = number1 ;
-                number1 = temp ;
+        for (int i = 0; i < numberOfQuestions; i++) {
+            int number1 = (int) (Math.random() * 100);
+            int number2 = (int) (Math.random() * 100);
+            clearScreen();
+            if (number2 > number1) {
+                int temp = number2;
+                number2 = number1;
+                number1 = temp;
             }
 
-            int studentResult = printEquation ( kboard, number1, number2, "-" ) ;
+            int studentResult = printEquation(kboard, number1, number2, "-");
 
-            if ( studentResult == ( number1 - number2 ) )
+            if (studentResult == (number1 - number2))
                 score++;
         }
 
-        return score ;
+        return score;
     }
 
-    public static int forthGradeFlashCards ( Scanner kboard, String studentName, int numberOfQuestions ) //4th
+    public static int forthGradeFlashCards(Scanner kboard, String studentName, int numberOfQuestions) //4th
     {
-        System.out.println ("I'm here in forthGradeFlashCards.");
-        int score = 0 ;
+        System.out.println("I'm here in forthGradeFlashCards.");
+        int score = 0;
 
         // loop through numberOfQuestions times
         // 1. clear the screen
@@ -314,31 +289,29 @@ public class FlashCards
         // 4. determine if the response was correct
         // 5. if correct, increase score by one
         //
-        for ( int i = 0; i < numberOfQuestions; i++ )
-        {
-            int number1 = (int)(Math.random() * 50) ;//not too big
-            int number2 = (int)(Math.random() * 10) ;//not too big
-            clearScreen () ;
-            if ( number2 > number1 )
-            {
-                int temp = number2 ;
-                number2 = number1 ;
-                number1 = temp ;
+        for (int i = 0; i < numberOfQuestions; i++) {
+            int number1 = (int) (Math.random() * 50);//not too big
+            int number2 = (int) (Math.random() * 10);//not too big
+            clearScreen();
+            if (number2 > number1) {
+                int temp = number2;
+                number2 = number1;
+                number1 = temp;
             }
 
-            int studentResult = printEquation ( kboard, number1, number2, "*" ) ;
+            int studentResult = printEquation(kboard, number1, number2, "*");
 
-            if ( studentResult == ( number1 - number2 ) )
+            if (studentResult == (number1 * number2))
                 score++;
         }
 
-        return score ;
+        return score;
     }
 
-    public static int fifthGradeFlashCards ( Scanner kboard, String studentName, int numberOfQuestions ) //5th
+    public static int fifthGradeFlashCards(Scanner kboard, String studentName, int numberOfQuestions) //5th
     {
-        System.out.println ("I'm here in fifthGradeFlashCards.");
-        int score = 0 ;
+        System.out.println("I'm here in fifthGradeFlashCards.");
+        int score = 0;
 
         // loop through numberOfQuestions times
         // 1. clear the screen
@@ -348,32 +321,30 @@ public class FlashCards
         // 4. determine if the response was correct
         // 5. if correct, increase score by one
         //
-        for ( int i = 0; i < numberOfQuestions; i++ )
-        {
-            int number1 = (int)(Math.random() * 100) ; //not too big
-            int number2 = (int)(Math.random() * 10) ; //not too big
+        for (int i = 0; i < numberOfQuestions; i++) {
+            int number1 = (int) (Math.random() * 1000); //not too big
+            int number2 = (int) (Math.random() * 1000); //not too big
             //i guess they need to use calculator
-            clearScreen () ;
-            if ( number2 > number1 )
-            {
-                int temp = number2 ;
-                number2 = number1 ;
-                number1 = temp ;
+            clearScreen();
+            if (number2 > number1) {
+                int temp = number2;
+                number2 = number1;
+                number1 = temp;
             }
 
+            int studentResult = printEquation(kboard, number1, number2, "-");
 
-
-            if ( studentResult == ( number1 - number2 ) )
+            if (studentResult == (number1 - number2))
                 score++;
         }
 
-        return score ;
+        return score;
     }
 
-    public static int sixthGradeFlashCards ( Scanner kboard, String studentName, int numberOfQuestions ) //6th
+    public static int sixthGradeFlashCards(Scanner kboard, String studentName, int numberOfQuestions) //6th
     {
-        System.out.println ("I'm here in sixthGradeFlashCards.");
-        int score = 0 ;
+        System.out.println("I'm here in sixthGradeFlashCards.");
+        int score = 0;
 
         // loop through numberOfQuestions times
         // 1. clear the screen
@@ -383,41 +354,49 @@ public class FlashCards
         // 4. determine if the response was correct
         // 5. if correct, increase score by one
         //
+        for (int i = 0; i < numberOfQuestions; i++) {
+            int number1 = (int) (Math.random() * 100);//not too big
+            int number2 = (int) (Math.random() * 100);//not too big
 
-        for ( int i = 0; i < numberOfQuestions; i++ )
-        {
-            char operator = '+';
-            Random r = new Random();
-            switch (r.nextInt(4)){
-                case 0: operator = '+';
-                    break;
-                case 1: operator = '-';
-                    break;
-                case 2: operator = '*';
-                    break;
-                case 3: operator = '/';
-                    break;
-                default: operator = '?';
+            clearScreen();
+
+            if (number2 > number1) {
+                int temp = number2;
+                number2 = number1;
+                number1 = temp;
             }
-            int number1 = (int)(Math.random() * 100) ;
-            int number2 = (int)(Math.random() * 10) ;
-            //good luck
-            clearScreen () ;
-            if ( number2 > number1 )
-            {
-                int temp = number2 ;
-                number2 = number1 ;
-                number1 = temp ;
 
+            Random r = new Random();
+            int studentResult = 0;
 
-            int studentResult = printEquation ( kboard, number1, number2, "%s" % operator ) ;
+            switch (r.nextInt(3)) {
 
-            if ( studentResult == ( number1 - number2 ) )
-                score++;
+                case 0:
+                    studentResult = printEquation(kboard, number1, number2, "+");
+
+                    if (studentResult == (number1 + number2))
+                        score++;
+                    break;
+                case 1:
+                    studentResult = printEquation(kboard, number1, number2, "-");
+
+                    if (studentResult == (number1 - number2))
+                        score++;
+                    break;
+                case 2:
+                    studentResult = printEquation(kboard, number1, number2, "*");
+
+                    if (studentResult == (number1 * number2))
+                        score++;
+                    break;
+                default:
+                    break;
+            }
         }
 
-        return score ;
+        return score;
     }
+
 
 
     public static int printEquation ( Scanner kboard, int num1, int num2, String operator )
